@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :conversations, only: [:index, :show]
       resources :messages, only: [:create]
+      resources :contacts, only: [:index]
     end
   end
 end
