@@ -12,7 +12,7 @@ class Api::V1::MessagesController < ApplicationController
                                         receiver_id, current_api_user
                                        ).first
 
-      unless conversation.present?
+      if conversation.nil?
         conversation = Conversation.create!(sender_id: current_api_user.id, receiver_id: receiver_id)
       end
 

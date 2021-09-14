@@ -9,14 +9,14 @@ class Api::V1::ConversationsController < ApplicationController
   end
 
   def show
-    user = User.find(params[:id])
+    receiver_id = User.find(params[:id])
     conversation = Conversation.where("(sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?)",
-                                      current_api_user, user, user, current_api_user).first
+                                      current_api_user, receiver_id, receiver_id, current_api_user).first
     
     if conversation.nil?
       render json: { error: "Invalid conversation", status: :unprocessable_entity }
     else
-      messages = Message.where(conversation_id: conversation)
+      messages = Message.where(conversation_id: conversation).order(updated_at: :desc)
 
       render json: { data: messages, status: :success }
     end
