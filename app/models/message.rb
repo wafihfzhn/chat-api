@@ -11,5 +11,5 @@
 #
 class Message < ApplicationRecord
   belongs_to :user
-  belongs_to :converstaion
+  belongs_to :conversation
 end
