@@ -16,9 +16,17 @@ class Api::V1::ConversationsController < ApplicationController
     if conversation.nil?
       render json: { error: "Invalid conversation", status: :unprocessable_entity }
     else
-      messages = Message.where(conversation_id: conversation).order(updated_at: :desc)
+      messages = conversation.messages.order(updated_at: :desc)
+      unread_message = unread_messages(conversation, current_api_user)
 
-      render json: { data: messages, status: :success }
+      render json: { data: messages, meta: { unread_message: unread_message.size }, status: :success }
+
+      unread_message.update_all(read_at: Time.now)
     end
   end
+
+  private
+    def unread_messages(conversation, user)
+      conversation.messages.where.not(user_id: current_api_user).where(read_at: nil)
+    end
 end
