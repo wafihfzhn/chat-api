@@ -21,7 +21,7 @@ class Api::V1::MessagesController < ApplicationController
                             content: message_params[:content])
 
       if message.save
-        conversation.update!(updated_at: message.created_at)
+        conversation.update!(updated_at: message.created_at, last_message: message_params[:content])
 
         render json: { data: message, status: :success }
       else
