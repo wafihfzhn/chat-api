@@ -4,14 +4,15 @@ class Api::V1::ConversationsController < ApplicationController
   def index
     conversations = Conversation.where("sender_id = ? OR receiver_id = ?", current_api_user, current_api_user)
                                 .order(updated_at: :desc)
-    # conversations_data = []
-    # conversations.each do |conversation|
-    #   last_message = {"last_message" => conversation.messages.last.content}
-    #   conversation = JSON::parse(conversation.to_json).merge(last_message)
-    #   conversations_data << conversation
-    # end
+    conversations_data = []
+    conversations.each do |conversation|
+      last_message = { "last_message" => conversation.messages.last.content }
+      unread_message = { "unread_message" => unread_messages(conversation, current_api_user).size }
+      conversation = JSON::parse(conversation.to_json).merge(last_message, unread_message)
+      conversations_data << conversation
+    end
 
-    render json: { data: conversations, status: :success }
+    render json: { data: conversations_data, status: :success }
   end
 
   def show
@@ -22,10 +23,10 @@ class Api::V1::ConversationsController < ApplicationController
     if conversation.nil?
       render json: { error: "Invalid conversation", status: :unprocessable_entity }
     else
-      messages = conversation.messages.order(updated_at: :desc)
+      messages = conversation.messages.order(created_at: :desc)
       unread_message = unread_messages(conversation, current_api_user)
 
-      render json: { data: messages, unread_message: unread_message.size , status: :success }
+      render json: { data: messages, status: :success }
 
       unread_message.update_all(read_at: Time.now)
     end
