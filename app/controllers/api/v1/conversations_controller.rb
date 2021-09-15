@@ -4,14 +4,14 @@ class Api::V1::ConversationsController < ApplicationController
   def index
     conversations = Conversation.where("sender_id = ? OR receiver_id = ?", current_api_user, current_api_user)
                                 .order(updated_at: :desc)
-    conversations_data = []
-    conversations.each do |conversation|
-      last_message = {"last_message" => conversation.messages.last.content}
-      conversation = JSON::parse(conversation.to_json).merge(last_message)
-      conversations_data << conversation
-    end
+    # conversations_data = []
+    # conversations.each do |conversation|
+    #   last_message = {"last_message" => conversation.messages.last.content}
+    #   conversation = JSON::parse(conversation.to_json).merge(last_message)
+    #   conversations_data << conversation
+    # end
 
-    render json: { data: conversations_data, status: :success }
+    render json: { data: conversations, status: :success }
   end
 
   def show
