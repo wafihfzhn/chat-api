@@ -11,6 +11,7 @@ RSpec.describe Api::V1::ContactsController, type: :controller do
 
   it 'List contacts without current user' do
     get :index
+    expect(response.status).to eq(200)
     expect(JSON.parse(response.body)['data']).to eq(User.where.not(id: user).as_json)
   end
 end
