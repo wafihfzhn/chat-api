@@ -17,24 +17,6 @@ user_3:
   tokens:
   created_at: 2021-09-15 03:24:57.075494000 Z
   updated_at: 2021-09-15 03:24:57.075494000 Z
-user_1:
-  id: 1
-  provider: email
-  uid: first@email.com
-  encrypted_password: "$2a$12$BrDhun6y.SRnEpLLBDDNyOcl/3pAaTOEEPu0mvi7l/9k1vofH9tJi"
-  reset_password_token:
-  reset_password_sent_at:
-  allow_password_change: false
-  remember_created_at:
-  confirmation_token:
-  confirmed_at:
-  confirmation_sent_at:
-  unconfirmed_email:
-  full_name: First User
-  email: first@email.com
-  tokens: 
-  created_at: 2021-09-15 03:24:16.238216000 Z
-  updated_at: 2021-09-15 06:22:23.598027000 Z
 user_2:
   id: 2
   provider: email
@@ -50,6 +32,24 @@ user_2:
   unconfirmed_email:
   full_name: Second User
   email: second@email.com
-  tokens: 
+  tokens:
   created_at: 2021-09-15 03:24:36.841088000 Z
   updated_at: 2021-09-15 06:24:26.278990000 Z
+user_1:
+  id: 1
+  provider: email
+  uid: first@email.com
+  encrypted_password: "$2a$12$BrDhun6y.SRnEpLLBDDNyOcl/3pAaTOEEPu0mvi7l/9k1vofH9tJi"
+  reset_password_token:
+  reset_password_sent_at:
+  allow_password_change: false
+  remember_created_at:
+  confirmation_token:
+  confirmed_at:
+  confirmation_sent_at:
+  unconfirmed_email:
+  full_name: First User
+  email: first@email.com
+  tokens:
+  created_at: 2021-09-15 03:24:16.238216000 Z
+  updated_at: 2021-09-15 18:39:39.002470000 Z
