@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::ConversationsController, type: :controller do
-  fixtures :users, :conversations
+  fixtures :users, :conversations, :messages
 
   let(:user) { User.first }
 
