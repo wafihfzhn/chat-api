@@ -41,6 +41,8 @@ jobs:
           gem install bundler
           echo "> Installing gems..."
           bundle install --jobs 4 --retry 3
+          echo "> Copying config database test..."
+          cp config/database.yml.github-actions config/database.yml
           echo "> Initializing DB..."
           bundle exec rails db:create
           bundle exec rails db:migrate
