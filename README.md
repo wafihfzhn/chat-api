@@ -1,24 +1,25 @@
-# README
+## Chat API with Ruby on Rails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Tech Stack
 
-Things you may want to cover:
+- You can see on [Gemfile](Gemfile)
 
-* Ruby version
+### Requirements
 
-* System dependencies
+- Ruby 3.0.1
+- Rails 6.1.4
+- PostgreSQL
+- RSpec
 
-* Configuration
+### How to run
 
-* Database creation
+1. clone this repo and then run commands below
+2. run `bundle install`
+3. run migration `bundle exec rails db:migrate`
+4. run load fixtures `bundle exec rails db:fixtures:load`
+5. start the server `bundle exec rails s`
 
-* Database initialization
+For test you can run `bundle exec rspec`
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### API Documentation
+Click [here](https://github.com/wafihfzhn/chat/wiki/API-Documentation) for API documentation
