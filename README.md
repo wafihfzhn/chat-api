@@ -22,4 +22,4 @@
 For test you can run `bundle exec rspec`
 
 ### API Documentation
-Click [here](https://github.com/wafihfzhn/chat/wiki/API-Documentation) for API documentation
+Click [here](https://github.com/wafihfzhn/chat-api/wiki/API-Documentation) for API documentation
