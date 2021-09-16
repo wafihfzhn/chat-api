@@ -7,8 +7,8 @@ class Api::V1::ConversationsController < ApplicationController
     conversations_data = []
     conversations.each do |conversation|
       last_message = { "last_message" => conversation.messages.last.content }
-      unread_message = { "unread_message" => unread_messages(conversation, current_api_user).size }
-      conversation = JSON::parse(conversation.to_json).merge(last_message, unread_message)
+      unread_messages_count = { "unread_messages_count" => unread_messages(conversation, current_api_user).size }
+      conversation = JSON::parse(conversation.to_json).merge(last_message, unread_messages_count)
       conversations_data << conversation
     end
 
@@ -24,11 +24,11 @@ class Api::V1::ConversationsController < ApplicationController
       render json: { error: "Invalid conversation", status: :unprocessable_entity }
     else
       messages = conversation.messages.order(created_at: :desc)
-      unread_message = unread_messages(conversation, current_api_user)
+      unread_messages = unread_messages(conversation, current_api_user)
 
       render json: { data: messages, status: :success }
 
-      unread_message.update_all(read_at: Time.now)
+      unread_messages.update_all(read_at: Time.now)
     end
   end
 

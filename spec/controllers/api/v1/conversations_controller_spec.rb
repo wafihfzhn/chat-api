@@ -14,8 +14,8 @@ RSpec.describe Api::V1::ConversationsController, type: :controller do
     conversations_data = []
     conversations.each do |conversation|
       last_message = { "last_message" => conversation.messages.last.content }
-      unread_message = { "unread_message" => conversation.messages.where.not(user_id: user).where(read_at: nil).size }
-      conversation = JSON::parse(conversation.to_json).merge(last_message, unread_message)
+      unread_messages_count = { "unread_messages_count" => conversation.messages.where.not(user_id: user).where(read_at: nil).size }
+      conversation = JSON::parse(conversation.to_json).merge(last_message, unread_messages_count)
       conversations_data << conversation
     end
     get :index
